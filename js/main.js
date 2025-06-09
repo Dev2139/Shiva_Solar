@@ -94,5 +94,20 @@
         portfolioIsotope.isotope({filter: $(this).data('filter')});
     });
     
+    document.addEventListener('DOMContentLoaded', function() {
+      var form = document.getElementById('quote-form');
+      if(form) {
+        form.addEventListener('submit', function(e) {
+          e.preventDefault();
+          emailjs.sendForm('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', this)
+            .then(function() {
+              alert('Thank you! Your quote request has been sent.');
+              form.reset();
+            }, function(error) {
+              alert('Oops! Something went wrong. Please try again.');
+            });
+        });
+      }
+    });
 })(jQuery);
 
